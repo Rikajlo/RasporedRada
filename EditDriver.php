@@ -15,7 +15,7 @@ $sql = "SELECT ID_Driver FROM drivers";
 $result= mysqli_query($connection,$sql) or die(mysqli_error($connection));
 if (mysqli_num_rows($result)>0) {
     while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        if ($result['ID_Driver']==$id){
+        if ($record['ID_Driver']==$id){
             $iddrv=$id;
             break;
         }
