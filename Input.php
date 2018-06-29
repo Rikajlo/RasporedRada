@@ -8,29 +8,27 @@
 <body>
 
 <form>
-    <fieldset>
-        <div>
-            <select id="tourSelect">
+    <div>
+        <select id="tourSelect">
 
-            </select>
-        </div>
-        <div>
-            <select id="driverSelect">
+        </select>
+    </div>
+    <div>
+        <select id="driverSelect">
 
-            </select>
-        </div>
-        <div>
-            <select id="busSelect">
+        </select>
+    </div>
+    <div>
+        <select id="busSelect">
 
-            </select>
-        </div>
-        <div>
-            Span za greške
-        </div>
-        <div>
-            Span kratak opis
-        </div>
-    </fieldset>
+        </select>
+    </div>
+    <div>
+        Span za greške
+    </div>
+    <div>
+        Span kratak opis
+    </div>
 </form>
 
 
