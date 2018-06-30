@@ -38,7 +38,7 @@ function sendDriver()
     var area=document.querySelector('#area option:checked').value;
     var own=document.querySelector('#ownBus option:checked').value;
 
-    xmlhttp.open("GET","EditDriver.php?driverID="+id+"&driverFName="+fname+"&driverLName="+lname+"&password="+pass+"&digitTach="+digit+"&area="+area+"&ownBus="+own+"&upload="+upload,true);
+    xmlhttp.open("POST","EditDriver.php?driverID="+id+"&driverFName="+fname+"&driverLName="+lname+"&password="+pass+"&digitTach="+digit+"&area="+area+"&ownBus="+own+"&upload="+upload,true);
     xmlhttp.send();
 
 }

@@ -63,7 +63,7 @@ include_once ('db_config.php'); ?>
             echo '<tr><td>' . $record['ID_Driver'] . '</td><td>' . $record['First_Name'] . '</td>
             <td>' . $record['Last_Name'] . '</td><td>' . $dig . '</td><td>' . $record['Area'] . '</td>
             <td>' . $record['Bus_Own'] . '</td><td>' . $record['Photo_Link_Driver'] . '</td>
-            <td><a href="EditDriver.php">Edit</a></td><td>Delete</td></tr>';
+            <td>Edit</a></td><td>Delete</td></tr>';
         }
     }
     ?>
