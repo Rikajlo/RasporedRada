@@ -9,7 +9,6 @@ include_once "db_config.php";
 </head>
 <body>
 
-Odaberi dan i tip turažnih listova.
 <form method="post" action="">
     <input type="text" name="datum"/>
     <div>
@@ -30,33 +29,43 @@ Odaberi dan i tip turažnih listova.
         <input type="submit" value="submit"/>
     </div>
 </form>
-    <?php
 
-    $date=@$_POST['datum'];
-    $selecttour=@$_POST['selecttype'];
-    $selectday=@$_POST['selectday'];
 
-    $thereis=0;
-    $sql="SELECT * FROM Tours WHERE Type_Tour='$selecttour' and Type_Day='$selectday'";
-    $result = mysqli_query($con,$sql) or die(mysqli_error());
-    $rows = mysqli_num_rows($result);
-    if($rows==1){
-    $thereis=1;
-    }  else {
-        echo "0 results";
+
+
+
+<?php
+
+
+$date=@$_POST['datum'];
+$selectday=@$_POST['selectday'];
+$selecttour=@$_POST['selecttour'];
+
+
+var_dump($date);
+var_dump($selectday);
+var_dump($selecttour);
+
+$thereis=0;
+
+    $sql="SELECT * FROM tours WHERE Type_Day=$selectday and Type_Tour=$selecttour;";
+    $result = $connection->query($sql);
+    if (@$result->num_rows > 0) {
+// output data of each row
+        while($row = $result->fetch_assoc()) {
+
+
+            echo '<p>'.$row["ID_Tour"].' '.$row["Description"].' ';
+            $thereis=1;
+        }
+    } else {
+        echo "---";
     };
 
-    if($thereis){
-        $sql="INSERT INTO workplan(ID_Tour,Date_Work,Start_Time,End_Time,Total_Time) VALUES SELECT ID_Tour, '$date', Start_Time, End_Time, Total_Time FROM tours 
-WHERE Type_Tour='$selecttour' and Type_Day='$selectday';";
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
-        $rows = mysqli_num_rows($result);
-        if($rows==1){
-            echo "SUCCESS!";
-        }
-        else {
-            echo "0 results";
-        };
+    if($thereis) {
+        $sql = "INSERT INTO workplan(ID_Tour,Date_Work,Start_Time,End_Time,Total_Time) SELECT ID_Tour, '$date', Start_Time, End_Time, Total_Time FROM tours 
+WHERE Type_Tour=$selecttour and Type_Day=$selectday";
+        $result = $connection->query($sql);
     }
 
 

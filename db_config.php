@@ -3,7 +3,7 @@
     define("HOST","localhost");
     define("USER","root");
     define("PASSWORD","");
-    define("DATABASE","");
+    define("DATABASE","rasporedrada");
 
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
     if (mysqli_connect_errno())
