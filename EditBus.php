@@ -14,15 +14,15 @@ $sql = "SELECT ID_Bus FROM buses";
 $result= mysqli_query($connection,$sql) or die(mysqli_error($connection));
 if (mysqli_num_rows($result)>0) {
     while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        if ($record['ID_Driver']==$id){
+        if ($record['ID_Bus']==$id){
             $idbus=$id;
             break;
         }
     }
 }
 if(isset($idbus)){
-    $sql = "UPDATE buses SET busID=$idbus,`Type`='$type',Description='$desc',Plates='$plates',Broken=$broken,Reserved=$rent,Photo_Link_Bus='$upload'
-            WHERE ID_Driver=$iddrv";
+    $sql = "UPDATE buses SET ID_Bus=$idbus,`Type`='$type',Description='$desc',Plates='$plates',Broken=$broken,Reserved=$rent,Photo_Link_Bus='$upload'
+            WHERE ID_Bus=$idbus";
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 }
 else {
