@@ -31,6 +31,12 @@ include_once "db_config.php";
 </form>
 
 
+<form method="post" action="">
+    <input type="text" name="dateto" placeholder="Koji datum se pravi?"/>
+    <input type="text" name="datefrom" placeholder="Od kojeg se kopira?"/>
+        <input type="submit" value="submit"/>
+</form>
+
 
 
 
@@ -40,13 +46,17 @@ include_once "db_config.php";
 $date=@$_POST['datum'];
 $selectday=@$_POST['selectday'];
 $selecttour=@$_POST['selecttour'];
-
+$dateto=@$_POST['dateto'];
+$datefrom=@$_POST['datefrom'];
 
 var_dump($date);
 var_dump($selectday);
 var_dump($selecttour);
 
+
+
 $thereis=0;
+$thereisa=0;
 
     $sql="SELECT * FROM tours WHERE Type_Day=$selectday and Type_Tour=$selecttour;";
     $result = $connection->query($sql);
@@ -67,9 +77,46 @@ $thereis=0;
 WHERE Type_Tour=$selecttour and Type_Day=$selectday";
         $result = $connection->query($sql);
     }
+    /*
+$thereisfrom=0;
 
+$sql="SELECT * FROM workplan WHERE Date_Work=$datefrom";
+$result = $connection->query($sql);
+if (@$result->num_rows > 0) {
+// output data of each row
+    while($row = $result->fetch_assoc()) {
+
+
+        echo '<p>'.$row["ID_Tour"].' '.$row["Date_Work"].' ';
+        $thereisfrom=1;
+    }
+} else {
+    echo "---";
+};
+
+$sql="SELECT * FROM workplan WHERE Date_Work=$dateto";
+$result = $connection->query($sql);
+if (@$result->num_rows > 0) {
+// output data of each row
+    while($row = $result->fetch_assoc()) {
+        $thereisto=1;
+    }
+} else {
+    $thereisto=0;
+};
+
+if(!($thereisto)) {
+if($thereisfrom) {*/
+    $sql = "INSERT INTO workplan(ID_Tour,ID_Driver,ID_Bus1,Date_Work,Start_Time,End_Time,Total_Time) SELECT ID_Tour, ID_Driver, ID_Bus1, '$dateto', Start_Time, End_Time, Total_Time FROM workplan
+WHERE Date_Work='$datefrom'";
+    $result = $connection->query($sql);
+/*}
+}*/
 
     ?>
+
+
+
 
 
 
