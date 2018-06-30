@@ -1,4 +1,5 @@
-<?php include "db_config.php"; ?>
+<?php
+include_once ('db_config.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,24 +7,36 @@
     <title>Title</title>
 </head>
 <body>
-s
-<form>
-    <fieldset>
-        <div>ID: <input type="text" id="driverID"></div>
-        <div>Ime: <input type="text" id="driverLName"></div>
-        <div>Prezime: <input type="text" id="driverFName"></div>
-        <div>Digitalni takograf
-            <input type="radio" name="digitTach" value="yes">ima
-            <input type="radio" name="digitTach" value="no">nema</div>
-        <div>Area of work
-            <select id="AoW">
 
-            </select></div>
-        <div>Own bus
-            <select id="ownBus">
+<form method="post" action="EditDriver.php" >
+    <fieldset> <legend>Dodaj vozača</legend>
+        ID: <input type="text" name="driverID"><br/>
+        Ime: <input type="text" name="driverFName"><br/>
+        Prezime: <input type="text" name="driverLName"><br/>
+        Lozinka: <input type="password" name="password"><br/>
+        Digitalni takograf
+            <input type="radio" name="digitTach" value="1">ima
+            <input type="radio" name="digitTach" value="0">nema<br/>
+        Area of work
+            <select name="area">
+                <option value="1">Gradski</option>
+                <option value="2">Prigradski</option>
+            </select><br/>
+        Own bus
+            <select name="ownBus">
+                <?php
+                echo '<option value="null">Nema</option>';
+                $sql = "SELECT ID_Bus FROM buses";
+                $result= mysqli_query($connection,$sql) or die(mysqli_error($connection));
 
-            </select></div>
-        <div>Dodaj sliku vozača <input type="file" id="upload"></div>
+                if (mysqli_num_rows($result)>0) {
+                    while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                        echo '<option value="' . $record['ID_Bus'] . '">' . $record['ID_Bus'] . '</option>';
+                    }
+                } ?>
+            </select><br/>
+        Dodaj sliku vozača <input type="file" name="upload"><br/>
+        <input type="submit" value="dodaj">
     </fieldset>
 </form>
 <br/><br/><br/>
@@ -39,6 +52,20 @@ s
         <td>*edit</td>
         <td>*delete</td>
     </tr>
+    <?php
+    $sql = "SELECT * FROM drivers";
+    $result= mysqli_query($connection,$sql) or die(mysqli_error($connection));
+
+    if (mysqli_num_rows($result)>0) {
+        while ($record = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            if ($record['Digital_Tachograph']=1) $dig='Ima'; else $dig='Nema';
+            echo '<tr><td>' . $record['ID_Driver'] . '</td><td>' . $record['First_Name'] . '</td>
+            <td>' . $record['Last_Name'] . '</td><td>' . $dig . '</td><td>' . $record['Area'] . '</td>
+            <td>' . $record['Bus_Own'] . '</td><td>' . $record['Photo_Link_Driver'] . '</td>
+            <td><a href="EditDriver.php">Edit</a></td><td>Delete</td></tr>';
+        }
+    }
+    ?>
 </table>
 
 
