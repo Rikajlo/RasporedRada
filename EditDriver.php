@@ -31,3 +31,4 @@ else {
             VALUES ($id,'$fname','$lname','$pass',$digit,'$area',$own,'$upload')";
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 }
+echo "valjda radi...ili ne?";

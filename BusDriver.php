@@ -5,10 +5,11 @@ include_once ('db_config.php'); ?>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-
-<form method="post" action="EditDriver.php" >
+<script src="DriverScript.js"></script>
+<div id="BusDriver">
     <fieldset> <legend>Dodaj vozača</legend>
         ID: <input type="text" name="driverID"><br/>
         Ime: <input type="text" name="driverFName"><br/>
@@ -17,13 +18,13 @@ include_once ('db_config.php'); ?>
         Digitalni takograf
             <input type="radio" name="digitTach" value="1">ima
             <input type="radio" name="digitTach" value="0">nema<br/>
-        Area of work
-            <select name="area">
+        <div id="area">Area of work
+            <select>
                 <option value="1">Gradski</option>
                 <option value="2">Prigradski</option>
-            </select><br/>
-        Own bus
-            <select name="ownBus">
+            </select></div>
+        <div id="ownBus">Own bus
+            <select>
                 <?php
                 echo '<option value="null">Nema</option>';
                 $sql = "SELECT ID_Bus FROM buses";
@@ -34,12 +35,12 @@ include_once ('db_config.php'); ?>
                         echo '<option value="' . $record['ID_Bus'] . '">' . $record['ID_Bus'] . '</option>';
                     }
                 } ?>
-            </select><br/>
+            </select></div>
         Dodaj sliku vozača <input type="file" name="upload"><br/>
-        <input type="submit" value="dodaj">
+        <input type="button" value="dodaj" data-id="BusDriver">
     </fieldset>
-</form>
-<br/><br/><br/>
+</div>
+<br/><div class="result"></div><br/><br/>
 <table id="listdrivers" border="1" width="700">
     <tr>
         <td>ID</td>
