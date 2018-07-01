@@ -1,4 +1,4 @@
-<?php include "db_config.php"; ?>
+<?php include_once ('db_config.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +9,24 @@
 
 <form>
     <fieldset>
-        <div>ID: <input type="text" id="tourID"></div>
-        <div>Tip
-            <select id="type">
+        <div>ID: <input type="text" name="tourID"></div>
+        <div>Ime
+            <select name="name">
 
             </select></div>
-        <div>Opis: <input type="text" id="description"></div>
-        <div>Početak: <input type="text" id="start"></div>
-        <div>Kraj: <input type="text" id="finish"></div>
-        <div>Ukupno vreme: <input type="text" id="time"></div>
+        <div>Opis: <input type="text" name="description"></div>
+        <div>Početak: <input type="time" name="start"></div>
+        <div>Kraj: <input type="time" name="finish"></div>
+        <div>Ukupno vreme: <input type="time" name="time"></div>
         <div>Tip 2
-            <select id="type2">
+            <select name="type2">
 
             </select></div>
-        <div>Dodati sliku turažnog lista <input type="file" id="uploadTour"></div>
+        <div>Dodati sliku turažnog lista <input type="file" name="uploadTour"></div>
     </fieldset>
 </form>
 <br/><br/><br/>
-<table id="tourlist" border="1" width="700">
+<table id="tourlist" border="1" width="1000">
     <tr>
         <td>ID</td>
         <td>Tip</td>
